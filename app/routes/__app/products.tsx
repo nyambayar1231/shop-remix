@@ -38,29 +38,11 @@ export default function Products() {
         <h1 className="font-display text-d-h3 text-black">
           Бараа бүтээгдэхүүнүүд
         </h1>
-        <button className="btn-primary btn-sm">
-          <Link to="new">Шинэ бараа нэмэх</Link>
-        </button>
+        <Link to="new">
+          <button className="btn-primary btn-sm">Шинэ бараа нэмэх</button>
+        </Link>
       </div>
       <div className="h-6" />
-
-      <div className="grid grid-cols-4 gap-4">
-        <div className="card h-[80px] bg-base-100 shadow-xl">
-          <img
-            className="h-full object-cover"
-            src="https://res.cloudinary.com/dhvnuxwbp/image/upload/v1680258923/remix/t3ufj4czltatl22glfkb.png"
-            alt="Shoes"
-          />
-          <div className="card-body">
-            <h2 className="card-title">Shoes!</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-          </div>
-        </div>
-        <div className="h-10 bg-red-400"></div>
-        <div className="h-10 bg-red-400"></div>
-        <div className="h-10 bg-red-400"></div>
-      </div>
-
       <Outlet />
     </div>
   );

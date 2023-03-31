@@ -80,7 +80,7 @@ export async function action({ request }: ActionArgs) {
 export default function NewProduct() {
   const data = useActionData<typeof action>();
   const transition = useTransition();
-  const showSpinner = useSpinDelay(transition.state !== "submitting");
+  const showSpinner = useSpinDelay(transition.state === "submitting");
 
   return (
     <Form

@@ -20,11 +20,11 @@ export default function AppRoute() {
           <div className="h-7" />
           <div className="flex flex-col font-bold text-gray-800">
             <NavItem to="dashboard">Dashboard</NavItem>
-            <NavItem to="accounts">Accounts</NavItem>
-            <NavItem to="sales">Sales</NavItem>
+            {/* <NavItem to="accounts">Accounts</NavItem> */}
+            {/* <NavItem to="sales">Sales</NavItem> */}
             <NavItem to="products">Products</NavItem>
-            <NavItem to="expenses">Expenses</NavItem>
-            <NavItem to="reports">Reports</NavItem>
+            {/* <NavItem to="expenses">Expenses</NavItem> */}
+            {/* <NavItem to="reports">Reports</NavItem> */}
 
             <Form
               method="post"

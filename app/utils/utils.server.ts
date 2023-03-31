@@ -12,6 +12,18 @@ async function uploadImage(data: AsyncIterable<Uint8Array>) {
     const uploadStream = cloudinary.v2.uploader.upload_stream(
       {
         folder: "remix",
+        transformation: [
+          {
+            dpr: "auto",
+            responsive: true,
+            crop: "scale",
+          },
+          {
+            effect: "art:hokusai",
+            border: "0px_solid_rgb:00390b",
+            radius: 12,
+          },
+        ],
       },
       (error, result) => {
         if (error) {

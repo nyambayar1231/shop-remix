@@ -16,29 +16,40 @@ export default function Product() {
 
   console.log(data);
   return (
-    <div className="grid grid-cols-2 gap-6 bg-slate-50 px-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-      {products?.map((product) => {
-        return (
-          <Link
-            to={`${product?.id}`}
-            key={product?.id}
-            className="flex h-full flex-col bg-white p-4 shadow-sm"
-          >
-            <div className="flex flex-grow items-center justify-center">
-              <img
-                className="cloud-responsive min-h-full max-w-full object-contain"
-                src={product?.image}
-                alt="Shoes"
-              />
-            </div>
-            <div className="">
-              <h2 className="card-title">{product.name}</h2>
-              <p className="text-d-p-sm">{product.code}</p>
-              <p>{product.price.toFixed(2)}</p>
-            </div>
-          </Link>
-        );
-      })}
+    <div className="bg-gray-50 px-4">
+      <div className="h-10" />
+      <div className="mx-auto w-full">
+        <input
+          type="text"
+          placeholder="Хайх"
+          className="input w-full max-w-xs focus:outline-primary"
+        />
+      </div>
+      <div className="h-10" />
+      <div className="grid grid-cols-2 gap-4  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {products?.map((product) => {
+          return (
+            <Link
+              to={`${product?.id}`}
+              key={product?.id}
+              className="flex h-full flex-col bg-white shadow-sm"
+            >
+              <div className="flex flex-grow items-center justify-center">
+                <img
+                  className="cloud-responsive min-h-full max-w-full object-contain"
+                  src={product?.image}
+                  alt="Shoes"
+                />
+              </div>
+              <div className="px-4">
+                <h2 className="card-title">{product.name}</h2>
+                <p className="text-d-p-sm">{product.code}</p>
+                <p>{product.price.toFixed(2)}</p>
+              </div>
+            </Link>
+          );
+        })}
+      </div>
     </div>
   );
 }

@@ -1,9 +1,12 @@
-import { Form, Link, NavLink, Outlet } from "@remix-run/react";
+import { Form, Link, NavLink, Outlet, useTransition } from "@remix-run/react";
 import { FullFakebooksLogo, LogoutIcon, SpinnerIcon } from "~/components";
 import clsx from "clsx";
+import { useSpinDelay } from "spin-delay";
 
 export default function AppRoute() {
-  const showSpinner = true;
+  const transition = useTransition();
+  const showSpinner = useSpinDelay(transition.state !== "idle");
+
   return (
     <div className="relative flex h-full rounded-lg bg-white text-gray-600">
       <div className="border-r border-gray-100 bg-gray-50">

@@ -1,7 +1,23 @@
-import { Link, NavLink, Outlet, useMatches } from "@remix-run/react";
+import {
+  Link,
+  NavLink,
+  Outlet,
+  useLoaderData,
+  useMatches,
+} from "@remix-run/react";
+import type { LoaderArgs } from "@remix-run/node";
+import { json } from "@remix-run/node";
+import { getProducts } from "~/models/product.server";
 
 const linkClassName = ({ isActive }: { isActive: boolean }) =>
   isActive ? "font-bold text-black" : "";
+
+export async function loader({ request }: LoaderArgs) {
+  const products = await getProducts();
+  return json({
+    products,
+  });
+}
 
 export default function Products() {
   const matches = useMatches();
@@ -12,6 +28,10 @@ export default function Products() {
   const newProductMatches = matches.some(
     (m) => m.id === "routes/__app/products/new"
   );
+
+  const data = useLoaderData<typeof loader>();
+
+  console.log(data);
   return (
     <div className="relative h-full p-10">
       <div className="flex w-full justify-between">
@@ -22,21 +42,24 @@ export default function Products() {
           <Link to="new">Шинэ бараа нэмэх</Link>
         </button>
       </div>
-
       <div className="h-6" />
-      {/* <div className="flex gap-4 border-b border-gray-100 pb-4 text-[length:14px] font-medium text-gray-400">
-        <NavLink to="." className={linkClassName({ isActive: indexMatches })}>
-          Бүх бараа
-        </NavLink>
 
-        <NavLink
-          to="new"
-          className={linkClassName({ isActive: newProductMatches })}
-        >
-          Шинэ бараа
-        </NavLink>
-      </div> */}
-      {/* <div className="h-4" /> */}
+      <div className="grid grid-cols-4 gap-4">
+        <div className="card h-[80px] bg-base-100 shadow-xl">
+          <img
+            className="h-full object-cover"
+            src="https://res.cloudinary.com/dhvnuxwbp/image/upload/v1680258923/remix/t3ufj4czltatl22glfkb.png"
+            alt="Shoes"
+          />
+          <div className="card-body">
+            <h2 className="card-title">Shoes!</h2>
+            <p>If a dog chews shoes whose shoes does he choose?</p>
+          </div>
+        </div>
+        <div className="h-10 bg-red-400"></div>
+        <div className="h-10 bg-red-400"></div>
+        <div className="h-10 bg-red-400"></div>
+      </div>
 
       <Outlet />
     </div>

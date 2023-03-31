@@ -24,6 +24,10 @@ export async function createProduct({
   });
 }
 
+export async function getProducts() {
+  return prisma.product.findMany();
+}
+
 export async function getProductDetails(productId: string) {
   const product = await prisma.product.findUnique({
     where: { id: productId },

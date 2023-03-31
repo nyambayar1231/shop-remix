@@ -13,6 +13,8 @@ import {
 } from "@remix-run/node";
 
 import { uploadImage } from "~/utils/utils.server";
+import { useTransition } from "@remix-run/react";
+import { useSpinDelay } from "spin-delay";
 
 function validatePrice(price: number) {
   if (price <= 0) return "Must be greater than 0";
@@ -77,6 +79,8 @@ export async function action({ request }: ActionArgs) {
 
 export default function NewProduct() {
   const data = useActionData<typeof action>();
+  const transition = useTransition();
+  const showSpinner = useSpinDelay(transition.state !== "submitting");
 
   return (
     <Form
@@ -132,19 +136,13 @@ export default function NewProduct() {
       </div>
       <div className="h-6" />
 
-      {data?.product?.image ? (
-        <>
-          <h2>uploaded image</h2>
-          <img src={data.product?.image} alt={"Upload result"} />
-        </>
-      ) : null}
-
       <div className="inline-flex w-full justify-end">
         <button
           type="submit"
-          className="rounded-sm border bg-black px-4 py-2 text-white hover:bg-white hover:text-black"
+          className={`btn-primary btn disabled:btn-disabled disabled:loading`}
+          disabled={showSpinner}
         >
-          Хадгалах
+          {showSpinner ? null : "Хадгалах"}
         </button>
       </div>
     </Form>

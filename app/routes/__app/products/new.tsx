@@ -15,6 +15,7 @@ import {
 import { uploadImage } from "~/utils/utils.server";
 import { useTransition } from "@remix-run/react";
 import { useSpinDelay } from "spin-delay";
+import { BackwardIcon, ChevronLeftIcon } from "@heroicons/react/20/solid";
 
 function validatePrice(price: number) {
   if (price <= 0) return "Must be greater than 0";
@@ -83,67 +84,83 @@ export default function NewProduct() {
   const showSpinner = useSpinDelay(transition.state === "submitting");
 
   return (
-    <Form
-      encType="multipart/form-data"
-      method="post"
-      className="mx-auto max-w-[600px] rounded-xl bg-aqua-50 px-6 py-4"
-    >
-      <p className="text-gray-800">Ерөнхий мэдээлэл</p>
-      <div className="h-6" />
+    <Form encType="multipart/form-data" method="post">
+      <div className="h-screen bg-white ">
+        <div className="flex items-center gap-4 px-6 pt-4">
+          <div className="border">
+            <ChevronLeftIcon className="h-8 w-8" />
+          </div>
+          <h1 className="text-d-p-lg">Шинэ Бараа</h1>
+        </div>
+        <div className="divider w-full" />
 
-      <div className="flex flex-col">
-        <label htmlFor="name">
-          <LabelText>Нэр</LabelText>
-        </label>
-        <input id="name" name="name" className={inputClasses} />
-      </div>
-      <div className="h-6" />
-      <div>
-        <label htmlFor="description">
-          <LabelText>Тайлбар</LabelText>
-        </label>
-        <input name="description" className={inputClasses} />
-      </div>
-      <div className="h-6" />
+        <div className="px-6">
+          <p className="text-gray-800">Ерөнхий мэдээлэл</p>
+          <div className="h-6" />
 
-      <div className="flex flex-col">
-        <label htmlFor="img-field">
-          <LabelText>Зураг</LabelText>
-        </label>
-        <input
-          id="img-field"
-          type="file"
-          name="img"
-          accept="image/*"
-          className="file-input-bordered file-input-primary file-input-sm w-full max-w-xs"
-        />
-      </div>
-      <div className="h-6" />
+          <div className="flex flex-col">
+            <label htmlFor="name">
+              <LabelText>Нэр</LabelText>
+            </label>
+            <input id="name" name="name" className={inputClasses} />
+          </div>
+          <div className="h-6" />
+          <div>
+            <label htmlFor="description">
+              <LabelText>Тайлбар</LabelText>
+            </label>
+            <input name="description" className={inputClasses} />
+          </div>
+          <div className="h-6" />
 
-      <div className="flex flex-col">
-        <label htmlFor="code">
-          <LabelText>Барааны код</LabelText>
-        </label>
-        <input name="code" className={inputClasses} />
-      </div>
-      <div className="h-6" />
+          <div className="flex flex-col">
+            <label htmlFor="img-field">
+              <LabelText>Зураг</LabelText>
+            </label>
+            <input
+              id="img-field"
+              type="file"
+              name="img"
+              accept="image/*"
+              className="file-input-bordered file-input-primary file-input-sm w-full max-w-xs"
+            />
+          </div>
+          <div className="h-6" />
 
-      <div className="flex flex-col">
-        <label htmlFor="price">
-          <LabelText>Үнэ</LabelText>
-        </label>
-        <input name="price" type="number" className={inputClasses} />
-      </div>
-      <div className="h-6" />
+          <div className="flex flex-col">
+            <label htmlFor="code">
+              <LabelText>Барааны код</LabelText>
+            </label>
+            <input name="code" className={inputClasses} />
+          </div>
+          <div className="h-6" />
 
-      <div className="inline-flex w-full justify-end">
-        <button
-          type="submit"
-          className={`btn-primary btn disabled:btn-disabled disabled:loading`}
-          disabled={showSpinner}
-        >
-          {showSpinner ? null : "Хадгалах"}
-        </button>
+          <div className="flex flex-col">
+            <label htmlFor="price">
+              <LabelText>Үнэ</LabelText>
+            </label>
+            <input
+              name="price"
+              type="number"
+              className={inputClasses}
+              required
+            />
+          </div>
+          <div className="h-6" />
+
+          <div className="inline-flex w-full justify-end gap-6">
+            <button type="button" className={`btn-outline btn`}>
+              Буцах
+            </button>
+            <button
+              type="submit"
+              className={`btn-primary btn disabled:btn-disabled disabled:loading`}
+              disabled={showSpinner}
+            >
+              {showSpinner ? null : "Хадгалах"}
+            </button>
+          </div>
+        </div>
       </div>
     </Form>
   );

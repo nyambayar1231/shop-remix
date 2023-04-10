@@ -29,6 +29,7 @@
     "/public/build"
   ],
   "dependencies": {
+    "@editorjs/editorjs": "^2.26.5",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
     "@prisma/client": "^4.9.0",
